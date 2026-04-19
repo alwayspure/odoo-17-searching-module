@@ -1,0 +1,170 @@
+
+.hk_nav_search_btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 12px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 4px;
+    }
+}
+
+.hk_search_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.hk_search_panel {
+    width: 650px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.hk_search_input_wrapper {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    .hk_search_icon {
+        color: #666;
+        font-size: 16px;
+    }
+}
+
+.hk_active_model_tag {
+    display: inline-flex;
+    align-items: center;
+    background: #714B67;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    gap: 6px;
+
+    .hk_tag_close {
+        cursor: pointer;
+        font-size: 14px;
+        opacity: 0.8;
+        &:hover { opacity: 1; }
+    }
+}
+
+.hk_breadcrumb_sep {
+    color: #999;
+    font-size: 14px;
+}
+
+.hk_search_input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    min-width: 150px;
+
+    &::placeholder {
+        color: #aaa;
+    }
+}
+
+.hk_search_close {
+    cursor: pointer;
+    color: #999;
+    font-size: 18px;
+    margin-left: auto;
+    &:hover { color: #333; }
+}
+
+.hk_search_results {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.hk_search_result_item {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 12px;
+    border-bottom: 1px solid #f5f5f5;
+
+    &:hover, &.hk_selected {
+        background: #f8f8f8;
+    }
+
+    .hk_result_model {
+        background: #714B67;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        white-space: nowrap;
+        min-width: 70px;
+        text-align: center;
+        cursor: pointer;
+        flex-shrink: 0;
+
+        &:hover {
+            background: #5a3a55;
+            transform: scale(1.05);
+        }
+    }
+
+    .hk_result_breadcrumb {
+        color: #333;
+        font-size: 14px;
+        cursor: pointer;
+        flex: 1;
+
+        &:hover {
+            color: #714B67;
+            text-decoration: underline;
+        }
+
+        .hk_breadcrumb_sep {
+            color: #999;
+        }
+    }
+}
+
+.hk_no_results {
+    padding: 20px;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+}
+
+.hk_hint {
+    padding: 20px;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+
+    b { color: #714B67; }
+}
+
+.hk_loading {
+    padding: 20px;
+    text-align: center;
+    color: #714B67;
+}

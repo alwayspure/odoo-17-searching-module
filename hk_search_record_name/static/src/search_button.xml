@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="hk_search_record_name.SearchDialog">
+        <div class="hk_search_overlay" t-on-click="props.close">
+            <div class="hk_search_panel" t-on-click.stop="">
+
+                <div class="hk_search_input_wrapper">
+                    <t t-if="state.activeModel">
+                        <span class="hk_active_model_tag">
+                            <t t-esc="state.activeModel.name"/>
+                            <span class="hk_tag_close" t-on-click.stop="clearModel">x</span>
+                        </span>
+                        <span class="hk_breadcrumb_sep">/</span>
+                    </t>
+                    <i class="fa fa-search hk_search_icon"/>
+                    <input
+                        t-ref="searchInput"
+                        type="text"
+                        class="hk_search_input"
+                        t-att-placeholder="state.activeModel ? state.activeModel.name + &#39;...&#39; : &#39;Search all records...&#39;"
+                        t-on-input="onInput"
+                        t-on-keydown="onKeyDown"
+                    />
+                    <span class="hk_search_close" t-on-click="props.close">x</span>
+                </div>
+
+                <div t-if="state.loading" class="hk_loading">
+                    <i class="fa fa-spinner fa-spin"/> Searching...
+                </div>
+
+                <div t-elif="state.results.length > 0" class="hk_search_results">
+                    <t t-foreach="state.results" t-as="result" t-key="result.id">
+                        <div
+                            class="hk_search_result_item"
+                            t-att-class="{ hk_selected: result_index === state.selectedIndex }"
+                        >
+                            <span
+                                class="hk_result_model"
+                                t-on-click.stop="() => this.selectModel({ model: result.model, name: result.model_name })"
+                                title="Click to filter by this model"
+                            >
+                                <t t-esc="result.model_name"/>
+                            </span>
+                            <span class="hk_result_breadcrumb" t-on-click="() => this.openRecord(result)">
+                                <t t-if="state.activeModel">
+                                    <t t-esc="result.name"/>
+                                </t>
+                                <t t-else="">
+                                    <t t-esc="result.model_name"/>
+                                    <span class="hk_breadcrumb_sep"> / </span>
+                                    <t t-esc="result.name"/>
+                                </t>
+                            </span>
+                        </div>
+                    </t>
+                </div>
+
+                <div t-elif="state.query.length >= 2" class="hk_no_results">
+                    No records found
+                </div>
+
+                <div t-else="" class="hk_hint">
+                    <t t-if="state.activeModel">
+                        Searching in <b><t t-esc="state.activeModel.name"/></b>...
+                    </t>
+                    <t t-else="">
+                        Type at least 2 characters to search all records...
+                    </t>
+                </div>
+
+            </div>
+        </div>
+    </t>
+
+    <t t-name="web.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension">
+        <xpath expr="//t[@t-call=&#39;web.NavBar.AppsMenu&#39;]" position="after">
+            <button class="hk_nav_search_btn" t-on-click="openHKSearch" title="Search Records">
+                <i class="fa fa-search"/>
+            </button>
+        </xpath>
+    </t>
+
+</templates>
