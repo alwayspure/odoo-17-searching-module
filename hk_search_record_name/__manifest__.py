@@ -32,7 +32,7 @@
     'price': 0,
     'currency': 'EUR',
     'website': '',
-    'support': 'prachyshyn@gmail.com',
+    'support': '',
     'depends': [
         'web',
     ],
