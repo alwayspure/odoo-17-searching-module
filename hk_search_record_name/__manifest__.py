@@ -28,6 +28,10 @@
     """,
     'author': 'alwayspure',
     'license': 'LGPL-3',
+    'images': [
+        'static/description/icon.png',
+        'static/description/cover.png',
+    ]
     'sequence': 100,
     'price': 0,
     'currency': 'EUR',
