@@ -20,8 +20,8 @@ class HKSearchDialog extends Component {
             results: [],
             loading: false,
             selectedIndex: 0,
-            allModels: [],          // всі моделі з Odoo
-            activeModel: null,      // вибрана модель для фільтрації
+            allModels: [],          
+            activeModel: null,      
         });
 
         this.searchTimeout = null;
@@ -36,7 +36,7 @@ class HKSearchDialog extends Component {
         });
     }
 
-    // Завантажуємо всі моделі динамічно з ir.model
+    
     async _loadModels() {
         try {
             const models = await this.orm.searchRead(
@@ -51,7 +51,7 @@ class HKSearchDialog extends Component {
         }
     }
 
-    // Вибір моделі для фільтрації
+    
     selectModel(model) {
         if (this.state.activeModel && this.state.activeModel.model === model.model) {
             this.state.activeModel = null;
@@ -63,7 +63,7 @@ class HKSearchDialog extends Component {
         }
     }
 
-    // Скидаємо фільтр моделі
+   
     clearModel() {
         this.state.activeModel = null;
         if (this.state.query.length >= 2) {
@@ -90,7 +90,7 @@ class HKSearchDialog extends Component {
     async performSearch(query) {
         const results = [];
 
-        // Якщо вибрана конкретна модель — шукаємо тільки по ній
+      
         const modelsToSearch = this.state.activeModel
             ? [this.state.activeModel]
             : this.state.allModels;
